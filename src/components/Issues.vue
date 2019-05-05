@@ -7,7 +7,9 @@
       <input type="text" placeholder="Enter an issue you have..." 
         v-model="issue" name="issue"
         v-validate="'min: 5'" />
-      <p class="alert" v-if="errors.has('issue')" >{{ errors.first('issue') }}</p>
+      <transition name="alert-in">
+        <p class="alert" v-if="errors.has('issue')" >{{ errors.first('issue') }}</p>
+      </transition>
     </form>
 
     <ul>
