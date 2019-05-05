@@ -15,11 +15,13 @@
     <ul>
       <!-- animate.css classes used: -->
       <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
-        <li v-for="(data, i) in issues" :key="i">{{ i }}: {{ data.issue }} </li>
+        <li v-for="(data, i) in issues" :key="i">{{ data.issue }}
+          <i class="fa fa-times rm-icon" v-on:click="remove(i)"></i>
+        </li>
       </transition-group>
     </ul>
-    <p v-if="issues.length > 1">You have more than 1 issue!</p>
-    <p v-else>You dont overload with the issues.</p>
+    <p v-if="issues.length > 1" class="font-sm">You have more than 1 issue!</p>
+    <p v-else class="font-sm">You don't overload with the issues.</p>
     <div v-bind:class="{ alert: !hideAlert, 'funny-class': showFunnyClass }">{{ alert }}</div>
     <div v-bind:style="{ backgroundColor: bg.color, width: bg.width, height: bg.height }"></div>
   </div>
@@ -58,7 +60,12 @@ export default {
           console.log('input not valid')
         }
       })      
+    },
+
+    remove(id) {
+      this.issues.splice(id, 1)
     }
+
   }
 }
 </script>
