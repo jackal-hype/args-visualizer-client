@@ -13,7 +13,10 @@
     </form>
 
     <ul>
-      <li v-for="(data, i) in issues" :key="i">{{ i }}: {{ data.issue }} </li>
+      <!-- animate.css classes used: -->
+      <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+        <li v-for="(data, i) in issues" :key="i">{{ i }}: {{ data.issue }} </li>
+      </transition-group>
     </ul>
     <p v-if="issues.length > 1">You have more than 1 issue!</p>
     <p v-else>You dont overload with the issues.</p>
