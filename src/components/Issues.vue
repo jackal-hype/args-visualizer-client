@@ -2,9 +2,13 @@
   <div class="issue">
     <p>Leave your issues here, {{ name }} ! Wiu wiu wiu.</p>
     
-    <br><br><br>
-    <input type="text" placeholder="Enter an issue you have..." v-model="issue" />
-    <div class="">{{ issue }}</div>
+    <br>
+    <form @submit.prevent="addIssue">
+      <input type="text" placeholder="Enter an issue you have..." 
+        v-model="issue" name="issue"
+        v-validate="'min: 5'" />
+      <p class="alert" v-if="errors.has('issue')" >{{ errors.first('issue') }}</p>
+    </form>
 
     <ul>
       <li v-for="(data, i) in issues" :key="i">{{ i }}: {{ data.issue }} </li>
@@ -36,6 +40,19 @@ export default {
         width: '100%',
         height: '30px'
       }      
+    }
+  }, 
+
+  methods: {
+    addIssue() {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.issues.push({ issue: this.issue })
+          this.issue = ''
+        } else {
+          console.log('input not valid')
+        }
+      })      
     }
   }
 }

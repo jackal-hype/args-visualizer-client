@@ -4,7 +4,14 @@ ul {
 
 li {
     font-weight: bold;
+    text-align: left;
 }
+
+.issue {
+    width: 600px;
+    margin: 0 auto;
+}
+
 .alert {
     background-color: yellow;
     color: black;
@@ -22,6 +29,6 @@ input {
     border: 0;
     padding: 12px;
     font-size: 1.3em;
-    background-color: #433;
+    background-color: #42b983;
     color: #efeeee;
 }
