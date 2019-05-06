@@ -7,8 +7,9 @@ import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate)
 Vue.config.productionTip = false
 
-new Vue({
+window.vm1 = new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+})
+window.vm1.$mount('#app')
