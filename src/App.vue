@@ -15,6 +15,10 @@
   box-sizing: border-box;
 }
 
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css";
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -34,4 +38,13 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+p {
+  padding: 5px 5px 5px;
+}
+
+h3 {
+  margin-bottom: 15px;
+}
+
 </style>

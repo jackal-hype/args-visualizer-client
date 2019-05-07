@@ -1,6 +1,7 @@
 <template>
   <div class="home">    
-    <Issues />
+    <Issues title="Have a good time!" />    
+    <Issues title="Don't be bored." />    
   </div>
 </template>
 

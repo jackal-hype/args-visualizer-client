@@ -1,8 +1,6 @@
 <template>
   <div class="issue">
-    <p>Leave your issues here, {{ name }} ! Wiu wiu wiu.</p>
-    
-    <br>
+    <h3 class="title">{{ title }}</h3>
     <form @submit.prevent="addIssue">
       <input type="text" placeholder="Enter an issue you have..." 
         v-model="issue" name="issue"
@@ -14,7 +12,7 @@
 
     <ul>
       <!-- animate.css classes used: -->
-      <transition-group name="list" enter-active-class="animated bounceInUp" leave-active-class="animated bounceOutDown">
+      <transition-group name="list" enter-active-class="animated bounceInUp">
         <li v-for="(data, i) in issues" :key="i">{{ data.issue }}
           <i class="fa fa-times rm-icon" v-on:click="remove(i)"></i>
         </li>
@@ -22,8 +20,7 @@
     </ul>
     <p v-if="issues.length > 1" class="font-sm">You have more than 1 issue!</p>
     <p v-else class="font-sm">You don't overload with the issues.</p>
-    <div v-bind:class="{ alert: !hideAlert, 'funny-class': showFunnyClass }">{{ alert }}</div>
-    <div v-bind:style="{ backgroundColor: bg.color, width: bg.width, height: bg.height }"></div>
+    <br>    
   </div>
 </template>
 
@@ -49,6 +46,9 @@ export default {
       }      
     }
   }, 
+  props: [
+    'title'
+  ],
 
   methods: {
     addIssue() {
