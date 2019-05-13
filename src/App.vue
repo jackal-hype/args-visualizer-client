@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Старт</router-link>
+      <router-link to="/issues">Решения</router-link>
+      <router-link to="/lyrics">Финиш</router-link>
     </div>
     <router-view/>
   </div>
@@ -33,6 +34,12 @@
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  font-size: 1.4em;
+  padding: 5px 32px;
+  margin: 0 4px;
+  text-decoration: none;
+  border: 3px solid #2c3e50;
+  border-radius: 12px;
 }
 
 #nav a.router-link-exact-active {

@@ -1,18 +1,13 @@
 <template>
-  <div class="home">    
-    <Issues title="Have a good time!" />    
-    <Issues title="Don't be bored." />    
-  </div>
+    <div class="home">
+        <h1>With greater powers comes greater responsibility</h1>
+    </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import Issues from '@/components/Issues.vue'
-
-export default {
-  name: 'home',
-  components: {
-    Issues
-  }
-}
-</script>
+<style scoped>
+    h1 {
+        margin-top: 50px;
+        margin-bottom: 70px;
+        font-size: 2.8em;
+    }
+</style>
