@@ -1,7 +1,7 @@
 <template>
     <div class="arguments">
         <div :class="colorClassTitle">{{ title }}</div>
-        <input class="typing" v-model="typingArg" placeholder="..." @submit="addArg" />
+        <input class="typing" v-model="typingArg" placeholder="..." v-on:keyup.enter="addArg" />
         <ul>
             <li v-for="(arg, i) in args" :key="i" :style="'font-size: ' + arg.fontSize + 'px;'">
                 {{ arg.title }}<i class="up far fa-thumbs-up" @click="volUp(arg)" />
@@ -19,7 +19,8 @@ export default {
     data() {
         return {
             typingArg: '',
-            args: []
+            args: [],
+            defaultFontSize: 20     // px
         }
     },
 
@@ -50,8 +51,12 @@ export default {
     },
 
     methods: {
-        addArg(val) {
-            this.args.push(val)
+        addArg() {
+            // console.log(this.typingArg, this.args)
+            this.args.push({
+                title: this.typingArg,
+                fontSize: this.defaultFontSize
+            })
             this.emitToParent()
         },
 
