@@ -36,7 +36,7 @@ export default {
         issuePassed(newVal) {
             console.log("Issue issuePassed from parent: ", newVal, this)
             // newVal.title += 'gg'
-            this.issue = newVal
+            this.issue = Object.assign({}, newVal)
             console.log('Issue $data.issue.title: ', this.issue.title)
         }
     },
