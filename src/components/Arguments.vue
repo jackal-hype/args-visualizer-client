@@ -1,9 +1,13 @@
 <template>
     <div class="arguments">
-        <div class="title">{{ title }}</div>
+        <div :class="colorClassTitle">{{ title }}</div>
         <input class="typing" v-model="typingArg" placeholder="..." @submit="addArg" />
         <ul>
-            <li v-for="(arg, i) in args" :key="i">{{ arg.title }}</li>
+            <li v-for="(arg, i) in args" :key="i" :style="'font-size: ' + arg.fontSize + 'px;'">
+                {{ arg.title }}<i class="up far fa-thumbs-up" @click="volUp(arg)" />
+                <i class="down far fa-thumbs-down" @click="volDown(arg)" />
+                <i class="fas fa-cannabis" @click="rm(arg, i)" />
+            </li>
         </ul>
     </div>
 </template>
@@ -22,7 +26,14 @@ export default {
     computed: {
         title() {
             return (this.type == 'pros') ? 'За' : 'Против'
+        },
+        colorClass() {
+            return (this.type == 'pros') ? 'pros' : 'cons'
+        },
+        colorClassTitle() {
+            return this.colorClass + ' title'
         }
+
     },
 
     props: {
@@ -46,6 +57,19 @@ export default {
 
         emitToParent() {
             this.$emit('ChildToParent', {type: this.type, args: this.args})
+        },
+
+        volUp(item) {
+            item.fontSize = 1.1 * item.fontSize
+        },
+
+        volDown(item) {
+            item.fontSize = 0.9 * item.fontSize
+        },
+
+        rm(item, i) {
+            console.log(item, this.args)
+            this.args.splice(i, 1)
         }
     }
 }
@@ -55,10 +79,17 @@ export default {
     .arguments {
         display: block;
         padding: 8px 30px 20px 20px;
-        font-size: 1.5em;
+        font-size: 20px;
     }
     .title {
         margin-bottom: 8px;
+        font-size: 1.3em;
+    }
+    .pros {
+        color: #8b8;
+    }
+    .cons {
+        color: #f45;
     }
     .typing {
         width: 100%;
@@ -69,13 +100,21 @@ export default {
 
     }
     .typing:focus {
-        border-radius: 6px;
-        border: 2px solid #6ee;
+        border-radius: 8px;
+        border: none;
+        padding: 5px 11px;
     }
     ul {
         text-align: right;
-        padding: 5px 3px 20px 5px;
-        line-height: 1.5em;
+        padding: 5px 0px 20px 5px;
+        line-height: 1.8em;
+        font-size: 1em;
+    }
+    li i {
+        margin-left: 7px;
+        font-size: 16px;
+        opacity: 0.8;
+        cursor: pointer;
     }
 
 </style>
