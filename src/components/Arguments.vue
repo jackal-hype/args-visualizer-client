@@ -4,9 +4,12 @@
         <input class="typing" v-model="typingArg" placeholder="..." v-on:keyup.enter="addArg" />
         <ul>
             <li v-for="(arg, i) in args" :key="i" :style="'font-size: ' + arg.fontSize + 'px;'">
-                {{ arg.title }}<i class="up far fa-thumbs-up" @click="volUp(arg)" />
-                <i class="down far fa-thumbs-down" @click="volDown(arg)" />
-                <i class="fas fa-cannabis" @click="rm(arg, i)" />
+                {{ arg.title }}
+                <span class="i-group">
+                    <i class="up far fa-thumbs-up" @click="volUp(arg)" />
+                    <i class="down far fa-thumbs-down" @click="volDown(arg)" />
+                    <i class="fas fa-cannabis" @click="rm(arg, i)" />
+                </span>
             </li>
         </ul>
     </div>
@@ -88,13 +91,13 @@ export default {
     }
     .title {
         margin-bottom: 8px;
-        font-size: 1.3em;
+        font-size: 1.5em;
     }
     .pros {
-        color: #8b8;
+        color: #42b978;
     }
     .cons {
-        color: #f45;
+        color: #f34352;
     }
     .typing {
         width: 100%;
@@ -112,14 +115,21 @@ export default {
     ul {
         text-align: right;
         padding: 5px 0px 20px 5px;
-        line-height: 1.8em;
+        line-height: inherit;
         font-size: 1em;
     }
+    li {
+        margin-bottom: 0.3em;
+    }
     li i {
-        margin-left: 7px;
+        margin-left: 3px;
         font-size: 16px;
         opacity: 0.8;
         cursor: pointer;
+    }
+    .i-group {
+        margin-left: 5px;
+        white-space: nowrap;
     }
 
 </style>
