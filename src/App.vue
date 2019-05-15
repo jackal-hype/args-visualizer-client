@@ -19,6 +19,10 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css";
 @import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
+a {
+  text-decoration: none;
+  color: #2c3e50;
+}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -28,7 +32,7 @@
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
+  padding: 30px 30px 50px 30px;
 }
 
 #nav a {
@@ -52,6 +56,10 @@ p {
 
 h3 {
   margin-bottom: 15px;
+}
+
+li {
+  list-style-type: none;
 }
 
 </style>
