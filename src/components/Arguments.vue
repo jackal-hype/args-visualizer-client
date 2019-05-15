@@ -1,7 +1,7 @@
 <template>
     <div class="arguments">
         <div class="title">{{ title }}</div>
-        <input v-model="typingArg" placeholder="например..." @submit="addArg" />
+        <input class="typing" v-model="typingArg" placeholder="..." @submit="addArg" />
         <ul>
             <li v-for="(arg, i) in args" :key="i">{{ arg.title }}</li>
         </ul>
@@ -53,7 +53,29 @@ export default {
 
 <style scoped>
     .arguments {
-        width: 50%;
         display: block;
+        padding: 8px 30px 20px 20px;
+        font-size: 1.5em;
     }
+    .title {
+        margin-bottom: 8px;
+    }
+    .typing {
+        width: 100%;
+        font-size: 1em;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        padding: 3px 11px;
+
+    }
+    .typing:focus {
+        border-radius: 6px;
+        border: 2px solid #6ee;
+    }
+    ul {
+        text-align: right;
+        padding: 5px 3px 20px 5px;
+        line-height: 1.5em;
+    }
+
 </style>

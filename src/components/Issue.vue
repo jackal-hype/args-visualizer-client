@@ -1,7 +1,7 @@
 <template>
     <div class="issue">
-        <Contenteditable class="problem" v-bind:content="issue.problem" @update="onChangeProblem" />
-        <Contenteditable class="title" v-bind:content="issue.title" @update="onChangeTitle" />
+        <Contenteditable class="problem" v-bind:content="issue.problem" @update="onChangeProblem" placeholder="Проблема..." />
+        <Contenteditable class="title" v-bind:content="issue.title" @update="onChangeTitle" placeholder="Решение..." />
         <div class="arguments-wrap">
             <Arguments type="pros" v-bind:issueId="issue._id" v-bind:argsPassed="issue.pros" v-on:childToParent="onArgMessage" />
             <Arguments type="cons" v-bind:issueId="issue._id" v-bind:argsPassed="issue.cons" v-on:childToParent="onArgMessage" />
@@ -69,12 +69,11 @@ export default {
 <style scoped>
     .problem {
         padding: 8px;
-        margin-bottom: 10px;
         font-size: 1em;
         min-height: 2em;
         background-color: #f7f7f7;
         width: 60%;
-        margin: 0 auto;
+        margin: 0 auto 5px;
     }
     .arguments-wrap {
         width: 100%;
@@ -88,6 +87,6 @@ export default {
     .title {
         font-size: 2em;
         padding: 3px 8px;
-        margin-bottom: 10px;
+        margin-bottom: 6px;
     }
 </style>

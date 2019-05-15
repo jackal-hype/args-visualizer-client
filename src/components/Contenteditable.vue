@@ -1,5 +1,5 @@
 <template>
-    <div contenteditable="true" @input="update"></div>
+    <div contenteditable="true" @input="update" :placeholder="placeholder"></div>
 </template>
 
 <script>
@@ -7,7 +7,8 @@ export default {
     name: "Contenteditable",
 
     props: [
-        "content"
+        "content",
+        "placeholder"
     ],
     watch: {
         content(newVal) {
@@ -36,3 +37,11 @@ export default {
     }
 };
 </script>
+
+<style>
+    [contenteditable]:empty:not(:focus)::before {
+        opacity: 0.3;
+        color: #a5a5a5;
+        content: attr(placeholder);
+    }
+</style>
