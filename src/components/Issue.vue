@@ -22,6 +22,7 @@
 <script>
 import Arguments from "./Arguments.vue"
 import Contenteditable from "./Contenteditable.vue"
+import http from "@/http"
 
 export default {
     name: "Issue",
@@ -38,6 +39,7 @@ export default {
            isSaved: true,
            isModified: false,
            isInitialized: false,
+
            argsCtrlsShown: false,
            switchCtrlsRotateAngle: 0
         };
@@ -114,7 +116,7 @@ export default {
                 }
             }
             console.log('Issue newIssue: ', val)
-            this.isInitialized = false
+            this.isInitialized = false  // we set this true in watch.issue() later
             if (val) {    // passed from other component
                 this.issue = val
                 this.isNew = false
@@ -137,9 +139,20 @@ export default {
         },
 
         saveIssue() {
-            // TODO
-
-            this.isSaved = true
+            let verb = this.isNew ? 'put' : 'patch'
+            let url = this.isNew ? 'issues' : 'issues/' + this.issue._id
+            http({
+                method: verb,
+                url: url,
+                data: {
+                    issue: this.issue
+                }
+            }).then(res => {
+                console.log(res)
+                this.isSaved = true
+            }).catch(err => {
+                console.log(err)
+            })
         }
     }
 }
