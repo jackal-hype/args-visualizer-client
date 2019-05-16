@@ -5,10 +5,10 @@
         <ul>
             <li v-for="(arg, i) in args" :key="i" :style="'font-size: ' + arg.fontSize + 'px;'">
                 {{ arg.title }}
-                <span class="i-group">
+                <span class="i-group" :style="{ display: ctrlsDisplay }">
                     <i class="up far fa-thumbs-up" @click="volUp(arg)" />
                     <i class="down far fa-thumbs-down" @click="volDown(arg)" />
-                    <i class="fas fa-cannabis" @click="rm(arg, i)" />
+                    <i class="rm fas fa-cannabis" @click="rm(arg, i)" />
                 </span>
             </li>
         </ul>
@@ -36,14 +36,17 @@ export default {
         },
         colorClassTitle() {
             return this.colorClass + ' title'
+        },
+        ctrlsDisplay() {
+            return this.ctrlsShown ? 'inline-block' : 'none'
         }
-
     },
 
     props: {
         issueId: String,
         type: String, // pros | cons
-        argsPassed: Array
+        argsPassed: Array,
+        ctrlsShown: Boolean
     },
     watch: {
         argsPassed(newVal) {
