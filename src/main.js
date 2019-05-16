@@ -7,6 +7,8 @@ import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate)
 Vue.config.productionTip = false
 
+window.EventBus = new Vue()     // we'll use Vuex next time..
+
 window.vm1 = new Vue({
   router,
   store,

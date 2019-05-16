@@ -150,9 +150,15 @@ export default {
             }).then(res => {
                 console.log(res)
                 this.isSaved = true
+                // TODO trigger sibling method, IssuesList.loadList()
+                this.triggerIssuesListReload()
             }).catch(err => {
                 console.log(err)
             })
+        },
+
+        triggerIssuesListReload() {
+            window.EventBus.$emit('needReloadIssuesList', {})
         }
     }
 }

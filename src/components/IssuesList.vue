@@ -27,6 +27,13 @@ export default {
 
     created() {
         this.loadList()
+
+    },
+
+    mounted() {
+        window.EventBus.$on('needReloadIssuesList', () => {
+            this.loadList()
+        })
     },
 
     methods: {
