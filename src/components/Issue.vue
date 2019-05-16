@@ -34,7 +34,10 @@ export default {
 
     data() {
         return {
-           issue: {},
+           issue: {
+               problem: '',
+               title: ''
+           },
            isNew: true,
            isSaved: true,
            isModified: false,
