@@ -1,7 +1,7 @@
 <template>
     <div class="arguments">
         <div :class="colorClassTitle">{{ title }}</div>
-        <input class="typing" v-model="typingArg" placeholder="..." v-on:keyup.enter="addArg" />
+        <input class="typing" v-model="typingArg" placeholder="..." v-on:keyup.enter="addArg($event)" />
         <ul>
             <li v-for="(arg, i) in args" :key="i" :style="'font-size: ' + arg.fontSize + 'px;'">
                 {{ arg.title }}
@@ -58,7 +58,7 @@ export default {
 
     methods: {
         addArg() {
-            // console.log(this.typingArg, this.args)
+            // console.log(ev)
             this.args.push({
                 title: this.typingArg,
                 fontSize: this.defaultFontSize
