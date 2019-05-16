@@ -71,7 +71,6 @@ export default {
     }
     li a:hover {
         cursor: pointer;
-        font-size: 1.05em;
     }
     li a:hover {
         color: #43bb43;
