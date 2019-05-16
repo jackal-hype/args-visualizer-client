@@ -1,10 +1,10 @@
 <template>
     <div class="issue">
         <div class="ctrls-left">
-            <i class="new-issue fas fa-feather-alt fa-lg" @click="newIssue($event)" title="Новое" />
+            <i class="new-issue fas fa-feather-alt fa-lg" @click="newIssue()" title="Новое" />
         </div>
         <div class="ctrls-right">
-            <i class="save-issue fas fa-cart-arrow-down fa-lg" @click="saveIssue($event)" title="Сохранить" />
+            <i class="save-issue fas fa-cart-arrow-down fa-lg" @click="saveIssue()" title="Сохранить" />
         </div>
         <div class="ctrls-right"></div>
         <Contenteditable class="problem" v-bind:content="issue.problem" @update="onChangeProblem" placeholder="Проблема..." />
@@ -35,8 +35,9 @@ export default {
         return {
            issue: {},
            isNew: true,
-           isSaved: false,
+           isSaved: true,
            isModified: false,
+           isInitialized: false,
            argsCtrlsShown: false,
            switchCtrlsRotateAngle: 0
         };
@@ -50,8 +51,27 @@ export default {
         issuePassed(newVal) {
             console.log("Issue issuePassed from parent: ", newVal, this)
             // newVal.title += 'gg'
-            this.issue = Object.assign({}, newVal)
+            let issue = Object.assign({}, newVal)
+            this.newIssue(issue)
             // console.log('Issue $data.issue.title: ', this.issue.title)
+        },
+
+        issue: {
+            handler(v0, v1) {
+                console.log('Issues watch issue: ', v0, v1, {
+                    'isInitialized': this.isInitialized,
+                    'isNew': this.isNew,
+                    'isSaved': this.isSaved,
+                    'isModified': this.isModified
+                })
+                if (this.isInitialized) {
+                    this.isModified = true
+                    this.isSaved = false
+                } else { // for the first after init delayd watch
+                    this.isInitialized = true
+                }
+            },
+            deep: true
         }
     },
 
@@ -69,14 +89,12 @@ export default {
         },
 
         onChangeProblem(val) {
-            console.log("Issue onChangeProblem event: ", val)
+            // console.log("Issue onChangeProblem event: ", val)
             this.issue.problem = val
-            // this.$emit('')
-            // this.issue.problem = $event
         },
 
         onChangeTitle(val) {
-            console.log("Issue onChangeTitle event: ", val)
+            // console.log("Issue onChangeTitle event: ", val)
             this.issue.title = val
         },
 
@@ -86,6 +104,42 @@ export default {
             let ang = this.switchCtrlsRotateAngle
             el.style = `transform: rotate(${ang}deg); -webkit-transform: rotate(${ang}deg); -ms-transform: rotate(${ang}deg);`
             this.argsCtrlsShown = !this.argsCtrlsShown
+        },
+
+        newIssue(val) {
+            if (this.isInitialized && !this.isSaved) {
+                let ans = confirm('Сохраните предыдущие наработки?')
+                if (ans) {
+                    return false
+                }
+            }
+            console.log('Issue newIssue: ', val)
+            this.isInitialized = false
+            if (val) {    // passed from other component
+                this.issue = val
+                this.isNew = false
+            } else {        // creating new clean
+                this.issue = this.getEmptyIssue()
+                this.isNew = true
+            }
+
+            this.isModified = false
+            this.isSaved = true
+        },
+
+        getEmptyIssue() {
+            return {
+                title: '',
+                problem: '',
+                pros: [],
+                cons: []
+            }
+        },
+
+        saveIssue() {
+            // TODO
+
+            this.isSaved = true
         }
     }
 }
