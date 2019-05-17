@@ -62,4 +62,10 @@ li {
   list-style-type: none;
 }
 
+i.fas:hover,
+i.far:hover,
+i.fa:hover {
+    color: #56a156;
+}
+
 </style>
