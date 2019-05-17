@@ -1,5 +1,5 @@
 # Args Visualizer Client. 
-## Visualize all the Arguments you have for any Decision (you need to push)
+## Visualize all the Arguments you have for any Decision (you need to push).
 ### Goes along with [Args Visualizer Server](https://github.com/jackal-hype/args-visualizer-server).
 
 ## Vue.js 2
